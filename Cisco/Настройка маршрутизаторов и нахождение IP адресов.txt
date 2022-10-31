@@ -1,0 +1,715 @@
+LAN A - 192.168.100+X.0/24
+LAN B - 192.168.110+X.0/24
+LAN C - 172.15+X.0.0/16
+LAN D - 172.18+X.0.0/16
+
+X = 7 
+
+LAN A - 192.168.107.0/24
+LAN B - 192.168.117.0/24
+LAN C - 172.22.0.0/16
+LAN D - 172.25.0.0/16
+
+LAN A - 140
+LAN B - 11
+LAN C - 1353
+LAN D - 666
+
+----------------------------------------------
+
+LAN A -> 140 + 2 -> 142 -> 256 -> 2^8
+
+LAN A: 192.168.107.0/24
+mac: 255.255.255.0
+
+SN: 192.168.107.0
+H[min]: 192.168.107.1
+H[max]: 192.168.107.254
+BC: 192.168.107.255
+
+----------------------------------------------
+
+LAN B -> 11 + 2 -> 13 -> 16 -> 2^4
+
+LAN B: 192.168.117.0/28
+mac: 255.255.255.240
+
+SN: 192.168.117.0
+H[min]: 192.168.117.1
+H[max]: 192.168.117.14
+BC: 192.168.117.15
+
+----------------------------------------------
+
+LAN C -> 1353 + 2 -> 1355 -> 2048 -> 2^11
+
+LAN C: 172.22.0.0/21
+mac: 255.255.248.0
+
+SN: 172.22.0.0
+H[min]: 172.22.0.1
+H[max]: 172.22.7.254
+BC: 172.22.7.255
+
+----------------------------------------------
+
+LAN D -> 666 + 2 -> 668 -> 1024 -> 2^10
+
+LAN D: 172.25.0.0/22
+mac: 255.255.252.0
+
+SN: 172.25.0.0
+H[min]: 172.25.0.1
+H[max]: 172.25.3.254
+BC: 172.25.3.255
+
+----------------------------------------------
+
+1. Расчёт IP-адресов и настройка локальных сетей
+
+PC 0: [LAN A]
+
+ip: 192.168.107.254
+mac: 255.255.255.0
+gateway: 192.168.107.1
+
+PC 3: [LAN B]
+
+ip: 192.168.117.14
+mac: 255.255.255.240
+gateway: 192.168.117.1
+
+PC 1: [LAN C]
+
+ip: 172.22.7.254
+mac: 255.255.248.0
+gateway: 172.22.0.1
+
+PC 2: [LAN D]
+
+ip: 172.25.3.254
+mac: 255.255.252.0
+gateway: 172.25.0.1
+
+2. Настройка маршрутизаторов
+2.1 Первоначальная настройка маршрутизаторов
+
+R:
+
+Router>en
+Router#conf t
+R(config)#hostname R
+R(config)#enable password R
+R(config)#line console 0
+R(config-line)#password R
+R(config-line)#login
+R(config-line)#exit
+R(config)#service password-encryption
+R(config)#banner motd "This is a secure system. Authorized Access Only!"
+R(config)#line vty 0 15
+R(config-line)#password R
+R(config-line)#login
+R(config-line)#exit
+
+R1:
+
+Router>en
+Router#conf t
+R1(config)#hostname R1
+R1(config)#enable password R1
+R1(config)#line console 0
+R1(config-line)#password R1
+R1(config-line)#login
+R1(config-line)#exit
+R1(config)#service password-encryption
+R1(config)#banner motd "This is a secure system. Authorized Access Only!"
+R1(config)#line vty 0 15
+R1(config-line)#password R1
+R1(config-line)#login
+R1(config-line)#exit
+
+R2:
+
+Router>en
+Router#conf t
+R2(config)#hostname R2
+R2(config)#enable password R2
+R2(config)#line console 0
+R2(config-line)#password R2
+R2(config-line)#login
+R2(config-line)#exit
+R2(config)#service password-encryption
+R2(config)#banner motd "This is a secure system. Authorized Access Only!"
+R2(config)#line vty 0 15
+R2(config-line)#password R2
+R2(config-line)#login
+R2(config-line)#exit
+
+R3:
+
+Router>en
+Router#conf t
+R3(config)#hostname R3
+R3(config)#enable password R3
+R3(config)#line console 0
+R3(config-line)#password R3
+R3(config-line)#login
+R3(config-line)#exit
+R3(config)#service password-encryption
+R3(config)#banner motd "This is a secure system. Authorized Access Only!"
+R3(config)#line vty 0 15
+R3(config-line)#password R3
+R3(config-line)#login
+R3(config-line)#exit
+
+R4:
+
+Router>en
+Router#conf t
+R4(config)#hostname R4
+R4(config)#enable password R4
+R4(config)#line console 0
+R4(config-line)#password R4
+R4(config-line)#login
+R4(config-line)#exit
+R4(config)#service password-encryption
+R4(config)#banner motd "This is a secure system. Authorized Access Only!"
+R4(config)#line vty 0 15
+R4(config-line)#password R4
+R4(config-line)#login
+R4(config-line)#exit
+
+R5:
+
+Router>en
+Router#conf t
+R5(config)#hostname R5
+R5(config)#enable password R5
+R5(config)#line console 0
+R5(config-line)#password R5
+R5(config-line)#login
+R5(config-line)#exit
+R5(config)#service password-encryption
+R5(config)#banner motd "This is a secure system. Authorized Access Only!"
+R5(config)#line vty 0 15
+R5(config-line)#password R5
+R5(config-line)#login
+R5(config-line)#exit
+
+R6:
+
+Router>en
+Router#conf t
+R6(config)#hostname R6
+R6(config)#enable password R6
+R6(config)#line console 0
+R6(config-line)#password R6
+R6(config-line)#login
+R6(config-line)#exit
+R6(config)#service password-encryption
+R6(config)#banner motd "This is a secure system. Authorized Access Only!"
+R6(config)#line vty 0 15
+R6(config-line)#password R6
+R6(config-line)#login
+R6(config-line)#exit
+
+
+2.2 Выполнить расчет IP-адресов для сетей, соединяющих маршрутизаторы.
+Для этого разбить соответствующий диапазон адресов на 8 равных подсетей. 
+Первые четыре подсети использовать для зоны RIP, вторые – для OSPF.
+
+Диапазон служебных адресов - 86.43.223.192 – 86.43.223.223
+
+---------------------------
+Зона RIP
+---------------------------
+
+R1-R2: 86.43.223.192/30
+mac: 255.255.255.252
+
+SN: 86.43.223.192
+H[min]: 86.43.223.193
+H[max]: 86.43.223.194
+BC: 86.43.223.195
+
+---------------------------
+
+R1-R3: 86.43.223.196/30
+mac: 255.255.255.252
+
+SN: 86.43.223.196
+H[min]: 86.43.223.197
+H[max]: 86.43.223.198
+BC: 86.43.223.199
+
+---------------------------
+
+R2-R3: 86.43.223.200/30
+mac: 255.255.255.252
+
+SN: 86.43.223.200
+H[min]: 86.43.223.201
+H[max]: 86.43.223.202
+BC: 86.43.223.203
+
+---------------------------
+
+R0-R1: 86.43.223.204/30
+mac: 255.255.255.252
+
+SN: 86.43.223.204
+H[min]: 86.43.223.205
+H[max]: 86.43.223.206
+BC: 86.43.223.207
+
+---------------------------
+Зона OSPF
+---------------------------
+
+R4-R5: 86.43.223.208/30
+mac: 255.255.255.252
+
+SN: 86.43.223.208
+H[min]: 86.43.223.209
+H[max]: 86.43.223.210
+BC: 86.43.223.211
+
+---------------------------
+
+R4-R6: 86.43.223.212/30
+mac: 255.255.255.252
+
+SN: 86.43.223.212
+H[min]: 86.43.223.213
+H[max]: 86.43.223.214
+BC: 86.43.223.215
+
+---------------------------
+
+R5-R6: 86.43.223.216/30
+mac: 255.255.255.252
+
+SN: 86.43.223.216
+H[min]: 86.43.223.217
+H[max]: 86.43.223.218
+BC: 86.43.223.219
+
+---------------------------
+
+R0-R4: 86.43.223.220/30
+mac: 255.255.255.252
+
+SN: 86.43.223.220
+H[min]: 86.43.223.221
+H[max]: 86.43.223.222
+BC: 86.43.223.223
+
+---------------------------
+
+2.3 Настроить интерфейсы маршрутизаторов.
+В локальных сетях использовать минимальные IP-адреса из доступных. 
+В остальных подсетях использовать минимальный адрес для маршрутизатора с меньшим порядковым номером.
+
+R:
+
+R>en
+R#conf t
+R(config)#int f0/0 [R1]
+R(config-if)#ip address 86.43.223.205 255.255.255.252  
+R(config-if)#no shu
+R(config-if)#int f2/0 [R4]
+R(config-if)#ip address 86.43.223.221 255.255.255.252
+R(config-if)#no shu
+
+R1:
+
+R1>en
+R1#conf t
+R1(config)#int f0/0 [R]
+R1(config-if)#ip address 86.43.223.206 255.255.255.252  
+R1(config-if)#no shu
+R1(config-if)#int f1/0 [R3]
+R1(config-if)#ip address 86.43.223.197 255.255.255.252
+R1(config-if)#no shu
+R1(config)#int f2/0 [R2]
+R1(config-if)#ip address 86.43.223.193 255.255.255.252
+R1(config-if)#no shu
+
+R2:
+
+R2>en
+R2#conf t
+R2(config)#int f0/0 [R3]
+R2(config-if)#ip address 86.43.223.201 255.255.255.252  
+R2(config-if)#no shu
+R2(config-if)#int f1/0 [R1]
+R2(config-if)#ip address 86.43.223.194 255.255.255.252
+R2(config-if)#no shu
+R2(config)#int f2/0 [PC0]
+R2(config-if)#ip address 192.168.107.1 255.255.255.0
+R2(config-if)#no shu
+
+R3:
+
+R3>en
+R3#conf t
+R3(config)#int f0/0 [R1]
+R3(config-if)#ip address 86.43.223.198 255.255.255.252  
+R3(config-if)#no shu
+R3(config-if)#int f1/0 [R2]
+R3(config-if)#ip address 86.43.223.202 255.255.255.252
+R3(config-if)#no shu
+R3(config)#int f2/0 [PC3]
+R3(config-if)#ip address 192.168.117.1 255.255.255.240
+R3(config-if)#no shu
+
+R4:
+
+R4>en
+R4#conf t
+R4(config)#int f0/0 [R]
+R4(config-if)#ip address 86.43.223.222 255.255.255.252  
+R4(config-if)#no shu
+R4(config-if)#int f1/0 [R5]
+R4(config-if)#ip address 86.43.223.209 255.255.255.252
+R4(config-if)#no shu
+R4(config)#int f2/0 [R6]
+R4(config-if)#ip address 86.43.223.213 255.255.255.252
+R4(config-if)#no shu
+
+R5:
+
+R5>en
+R5#conf t
+R5(config)#int f0/0 [R4]
+R5(config-if)#ip address 86.43.223.210 255.255.255.252  
+R5(config-if)#no shu
+R5(config-if)#int f1/0 [R6]
+R5(config-if)#ip address 86.43.223.217 255.255.255.252
+R5(config-if)#no shu
+R5(config)#int f2/0 [PC2]
+R5(config-if)#ip address 172.25.0.1 255.255.252.0
+R5(config-if)#no shu
+
+R6:
+
+R6>en
+R6#conf t
+R6(config)#int f0/0 [R5]
+R6(config-if)#ip address 86.43.223.218 255.255.255.252  
+R6(config-if)#no shu
+R6(config-if)#int f1/0 [R4]
+R6(config-if)#ip address 86.43.223.214 255.255.255.252
+R6(config-if)#no shu
+R6(config)#int f2/0 [PC1]
+R6(config-if)#ip address 172.22.0.1 255.255.248.0
+R6(config-if)#no shu
+
+3. Настройка статической маршрутизации
+а) в локальных сетях области RIP;
+б) в локальных сетях области OSPF;
+в) в служебных подсетях области RIP;
+г) в служебных подсетях области OSPF.
+
+Настроить на R статические суммарные маршруты до перечисленных сетей. 
+Настроить на R1 и R4 статические маршруты по умолчанию.
+
+Cуммарный маршрут (RIP) -> сети R0-R1, R1-R2, R1-R3, R2-R3:
+
+86.43.223.192 -> 192 -> 11000000
+86.43.223.196 -> 196 -> 11000100
+86.43.223.200 -> 200 -> 11001000
+86.43.223.204 -> 204 -> 11001100
+                        --------
+                        11110000 -> 240 - mac
+						11000000 -> 192 - ip
+
+-> маска 255.255.255.240 -> 86.43.223.192/28
+						
+Cуммарный маршрут (OSPF) -> сети R0-R4, R4-R5, R4-R6, R5-R6:
+
+86.43.223.208 -> 208 -> 11010000
+86.43.223.212 -> 212 -> 11010100
+86.43.223.216 -> 216 -> 11011000
+86.43.223.220 -> 220 -> 11011100
+                        --------
+                        11110000 -> 240 - mac
+						11010000 -> 208 - ip
+
+-> маска 255.255.255.240 -> 86.43.223.208/28
+
+Cуммарный маршрут -> LAN A и LAN B:
+
+192.168.107.0 -> 107 -> 01101011
+192.168.117.0 -> 117 -> 01110101
+                        --------
+                        11100000 -> 224 - mac
+						01100000 -> 96 - ip
+
+-> маска 255.255.224.0 -> 192.168.96.0/19
+
+Cуммарный маршрут -> LAN C и LAN D:
+                       
+172.22.0.0 -> 22 -> 00010110
+172.25.0.0 -> 25 -> 00011001
+                    --------
+                    11110000 -> 240 - mac
+					00010000 -> 16 - ip
+
+-> маска 255.240.0.0 -> 172.16.0.0/12
+
+R:
+
+R>en
+R#conf t
+R(config)#ip route 86.43.223.192 255.255.255.240 86.43.223.206 [сети R0-R1, R1-R2, R1-R3, R2-R3; R1 f0/0]
+R(config)#ip route 86.43.223.208 255.255.255.240 86.43.223.222 [сети R0-R4, R4-R5, R4-R6, R5-R6; R4 f0/0]
+R(config)#ip route 192.168.96.0 255.255.224.0 86.43.223.206 [сети A и B; R1 f0/0]
+R(config)#ip route 172.16.0.0 255.240.0.0 86.43.223.222 [сети С и D; R4 f0/0]
+R(config)#do sh ip route
+R(config)#do sh run
+
+4. Настройка протокола RIP
+На маршрутизаторах R1- R3 (область RIP) настроить маршрутизацию по протоколу RIP (версия 2):
+- включить адаптивную маршрутизацию по протоколу RIP;
+- выбрать версию 2;
+- отключить автоматическое суммирование маршрутов;
+- настроить маршрутизацию RIP на всех интерфейсах маршрутизаторов R1-R3, кроме соединения с R;
+- включить рассылку маршрута по умолчанию там, где это необходимо;
+- настроить пассивные интерфейсы там, где это необходимо.
+
+R1:
+
+R1>en
+R1#conf t
+R1(config)#router rip 
+R1(config-router)#ver 2
+R1(config-router)#no auto-summary 
+R1(config-router)#network 86.0.0.0 [добавляем сети R1-R2 и R1-R3]
+R1(config-router)#passive-interface f0/0 [отключаем rip f0/0 -> вверх]
+R1(config-router)#default-information originate [назначаем источник маршрута по умолчанию]
+R1(config-router)#exit
+R1(config)#ip route 0.0.0.0 0.0.0.0 86.43.223.205 [маршрут по умолчанию, интерфейс R f0/0 ]
+R1(config-router)#do sh ip protocols
+R2(config-router)#do sh run
+
+
+R2:
+
+R2>en
+R2#conf t
+R2(config)#router rip
+R2(config-router)#ver 2
+R2(config-router)#no auto-summary 
+R2(config-router)#network 86.0.0.0 [добавляем сети R1-R2 и R1-R3]
+R2(config-router)#network 192.168.107.0 [добавляем сеть LAN A]
+R2(config-router)#passive-interface f2/0 [отключаем rip f2/0 -> комп]
+R2(config-router)#do sh ip protocols
+R2(config-router)#do sh run
+
+R3:
+
+R3>en
+R3#conf t
+R3(config)#router rip 
+R3(config-router)#ver 2
+R3(config-router)#no auto-summary 
+R3(config-router)#network 86.0.0.0 [добавляем сети R1-R2 и R1-R3]
+R3(config-router)#network 192.168.117.0 [добавляем сеть LAN B]
+R3(config-router)#passive-interface f2/0 [отключаем rip f2/0 -> комп]
+R3(config-router)#do sh ip protocols
+R3(config-router)#do sh run
+R3(config-router)#do sh ip route
+
+5. Настройка протокола OSPF
+На маршрутизаторах R4-R6 (область OSPF) настроить маршрутизацию по протоколу OSPF. Номер процесса OSPF задать равным номеру варианта. Использовать корневую зону. Пошаговая инструкция по настройке маршрутизаторов:
+- адаптивную маршрутизацию по протоколу OSPF;
+- настроить маршрутизацию OSPF на всех интерфейсах маршрутизаторов R4-R6, кроме соединения с R;
+- включить рассылку маршрута по умолчанию там, где это необходимо;
+- настроить пассивные интерфейсы там, где это необходимо;
+- настроить аутентификацию md5.
+
+R4:
+
+R4>en
+R4#conf t
+R4(config)#router ospf 5
+R4(config-router)#passive-interface f0/0 [отключаем ospf f0/0 -> вверх]
+R4(config-router)#network 86.43.223.208 0.0.0.3 area 0 [сеть R4-R5, 255.255.255.252 -> 0.0.0.3]
+R4(config-router)#network 86.43.223.212 0.0.0.3 area 0 [сеть R4-R6, 255.255.255.252 -> 0.0.0.3]
+R4(config-router)#default-information originate
+R4(config-router)#exit
+R4(config)#ip route 0.0.0.0 0.0.0.0 86.43.223.221 [маршрут по умолчанию, интерфейс R f2/0]
+R4(config)#int f1/0 [интерфейс связывающий с R5]
+R4(config-if)#ip ospf authentication
+R4(config-if)#ip ospf message-digest-key 10 md5 10 [должен совпадать с R5 f0/0]
+R4(config)#int f2/0 [интерфейс связывающий с R6]
+R4(config-if)#ip ospf authentication
+R4(config-if)#ip ospf  message-digest-key 10 md5 10 [должен совпадать с R6 f1/0]
+
+R5:
+
+R5>en
+R5#conf t
+R5(config)#router ospf 100
+R5(config-router)#passive-interface f2/0 [отключаем ospf  f2/0 -> комп]
+R5(config-router)#network 86.43.223.208 0.0.0.3 area 0 [сеть R5-R4, 255.255.255.252 -> 0.0.0.3]
+R5(config-router)#network 86.43.223.216 0.0.0.3 area 0 [сеть R5-R6, 255.255.255.252 -> 0.0.0.3]
+R5(config-router)#network 172.25.0.0 0.0.3.255 area 0 [сеть LAN D, 255.255.252.0 -> 0.0.3.255]
+R5(config-router)#exit
+R5(config)#int f0/0 [интерфейс связывающий с R4]
+R5(config-if)#ip ospf authentication
+R5(config-if)#ip ospf message-digest-key 10 md5 10 [должен совпадать с R4 f1/0]
+R5(config)#int f1/0 [интерфейс связывающий с R6]
+R5(config-if)#ip ospf authentication
+R5(config-if)#ip ospf message-digest-key 10 md5 10 [должен совпадать с R6 f0/0]
+
+R6:
+
+R6>en
+R6#conf t
+R6(config)#router ospf 10
+R6(config-router)#passive-interface f2/0 [отключаем ospf f2/0 -> комп]
+R6(config-router)#network 86.43.223.212 0.0.0.3 area 0 [сеть R6-R4, 255.255.255.252 -> 0.0.0.3]
+R6(config-router)#network 86.43.223.216 0.0.0.3 area 0 [сеть R6-R5, 255.255.255.252 -> 0.0.0.3]
+R6(config-router)#network 172.22.0.0 0.0.7.255 area 0 [сеть LAN C, 255.255.248.0 -> 0.0.7.255]
+R6(config-router)#exit
+R6(config)#int f0/0 [интерфейс связывающий с R5]
+R6(config-if)#ip ospf authentication
+R6(config-if)#ip ospf message-digest-key 10 md5 10 [должен совпадать с R5 f1/0]
+R6(config)#int f1/0 [интерфейс связывающий с R4]
+R6(config-if)#ip ospf authentication
+R6(config-if)#ip ospf message-digest-key 10 md5 10 [должен совпадать с R4 f2/0]
+
+Настройки статической маршрутизации:
+а) в локальных сетях области RIP;
+б) в локальных сетях области OSPF;
+в) в служебных подсетях области RIP;
+г) в служебных подсетях области OSPF.
+
+Настроить на R статические суммарные маршруты до перечисленных сетей. 
+Настроить на R1 и R4 статические маршруты по умолчанию.
+
+R:
+
+R>en
+R#conf t
+R(config)#ip route 192.168.0.0 255.255.255.240 192.168.0.2 [назначение сеть R-R1, интерфейс R1 f0/0]
+R(config)#ip route 1.0.0.0 255.255.254.0 192.168.0.2 [назначение сеть LAN A 1.0.0.0 и LAN B 1.0.1.0, интерфейс R1 f0/0]
+R(config)#ip route 192.168.1.0 255.255.255.240 192.168.1.2 [назначение сеть R-R4 интерфейс R4 f0/0]
+R(config)#ip route 2.0.0.0 255.255.254.0 192.168.1.2 [назначение сеть LAN C, интерфейс R4 f0/0]
+R(config)#do sh ip route
+R(config)#do sh run
+R(config)#no router rip [при просмотре результатов sh run был обнаружен router rip, его отключаем, настроек для него нет]
+
+Настройка протокола RIP:
+На маршрутизаторах R1- R3 (область RIP) настроить маршрутизацию по протоколу RIP (версия 2):
+- включить адаптивную маршрутизацию по протоколу RIP;
+- выбрать версию 2;
+- отключить автоматическое суммирование маршрутов;
+- настроить маршрутизацию RIP на всех интерфейсах маршрутизаторов R1-R3, кроме соединения с R;
+- включить рассылку маршрута по умолчанию там, где это необходимо;
+- настроить пассивные интерфейсы там, где это необходимо.
+
+[rip - классовый протокол, задание маски не требует]
+
+R1:
+
+R1>en
+R1#conf t
+R1(config)#router rip [включаем маршрутизацию про протоколу rip]
+R1(config-router)#ver 2
+R1(config-router)#no auto-summary [в теории написано, почему автоматическое суммирование маршрутов это зло, цитирую]
+R1(config-router)#network 192.168.0.0 [добавляем сети R1-R2 и R1-R3, маски маршрутизатор возьмет сам с интерфейсов]
+R1(config-router)#passive-interface f0/0 [отключаем rip на интерфейсе f0/0, который смотрит вверх]
+R1(config-router)#do sh run
+R1(config-router)#default-information originate [назначаем источник маршрута по умолчанию]
+R1(config-router)#exit
+R1(config)#ip route 0.0.0.0 0.0.0.0 192.168.0.1 [маршрут по умолчанию, интерфейс R f0/0 ]
+
+
+R2:
+
+R2>en
+R2#conf t
+R2(config)#router rip [включаем маршрутизацию про протоколу rip]
+R2(config-router)#ver 2
+R2(config-router)#no auto-summary [в теории написано, почему автоматическое суммирование маршрутов это зло, цитирую]
+R2(config-router)#network 192.168.0.0 [добавляем сети R1-R2 и R1-R3, маски маршрутизатор возьмет сам с интерфейсов]
+R2(config-router)#network 1.0.0.0 [добавляем сеть LAN A, маски маршрутизатор возьмет сам с интерфейсов]
+R2(config-router)#passive-interface f2/0 [отключаем rip на интерфейсе f2/0, который смотрит в комп]
+R2(config-router)#do sh run
+
+R3:
+
+R3>en
+R3#conf t
+R3(config)#router rip [включаем маршрутизацию про протоколу rip]
+R3(config-router)#ver 2
+R3(config-router)#no auto-summary [в теории написано, почему автоматическое суммирование маршрутов это зло, цитирую]
+R3(config-router)#network 192.168.0.0 [добавляем сети R1-R2 и R1-R3, маски маршрутизатор возьмет сам с интерфейсов]
+R3(config-router)#network 1.0.0.0 [добавляем сеть LAN B, маски маршрутизатор возьмет сам с интерфейсов. Так как сеть класса А (1.0.0.0), а ей соответствует маска 8 бит, если написать какую-нибудь другую, то маршрутизатор все равно запишет 1.0.0.0]
+R3(config-router)#passive-interface f2/0 [отключаем rip на интерфейсе f2/0, который смотрит в комп]
+R3(config-router)#do sh run
+
+На маршрутизаторах R4-R6 (область OSPF) настроить маршрутизацию по протоколу OSPF. Номер процесса OSPF задать равным номеру варианта. Использовать корневую зону. Пошаговая инструкция по настройке маршрутизаторов:
+- адаптивную маршрутизацию по протоколу OSPF;
+- настроить маршрутизацию OSPF на всех интерфейсах маршрутизаторов R4-R6, кроме соединения с R;
+- включить рассылку маршрута по умолчанию там, где это необходимо;
+- настроить пассивные интерфейсы там, где это необходимо;
+- настроить аутентификацию md5.
+
+[ospf - безклассовый протокол, требует задание маски (инверсной маски)]
+
+R4:
+
+R4>en
+R4#conf t
+R4(config)#router ospf 5[влючаем ospf. process id - это локально значимая переменная, которая обозначает порядковый номер процесса ospf в рамках данного маршрутизатора. Это означет, что ни с какими соседними устройствами маршрутизатор этот номер не согласует. Это нужно для того, чтобы запустить несколько процессов ospf для разных сетей]
+R4(config-router)#passive-interface f0/0 [отключаем ospf на интерфейсе f0/0. который смотрит вверх]
+R4(config-router)#network 192.168.1.12 0.0.0.3 area 0 [сеть R4-R5, 255.255.255.252 -> 0.0.0.3]
+R4(config-router)#network 192.168.1.8 0.0.0.3 area 0 [сеть R4-R6, 255.255.255.252 -> 0.0.0.3]
+R4(config-router)#default-information originate [назначаем источник маршрута по умолчанию]
+R4(config-router)#exit
+R4(config)#ip route 0.0.0.0 0.0.0.0 192.168.1.1 [маршрут по умолчанию, интерфейс R f2/0]
+
+R5:
+
+R5>en
+R5#conf t
+R5(config)#router ospf 100
+R5(config-router)#passive-interface f2/0 [отключаем ospf на интерфейсе f2/0, который смотрит в комп]
+R5(config-router)#network 192.168.1.12 0.0.0.3 area 0 [сеть R5-R4, 255.255.255.252 -> 0.0.0.3]
+R5(config-router)#network 192.168.1.4 0.0.0.3 area 0 [сеть R5-R6, 255.255.255.252 -> 0.0.0.3]
+R6(config-router)#network 2.0.1.0 0.0.0.255 area 0 [сеть LAN D, 255.255.255.0 -> 0.0.0.255]
+
+R6:
+
+R6>en
+R6#conf t
+R6(config)#router ospf 10
+R6(config-router)#passive-interface f2/0 [отключаем ospf на интерфейсе f2/0, который смотрит в комп]
+R6(config-router)#network 192.168.1.8 0.0.0.3 area 0 [сеть R6-R4, 255.255.255.252 -> 0.0.0.3]
+R6(config-router)#network 192.168.1.4 0.0.0.3 area 0 [сеть R6-R5, 255.255.255.252 -> 0.0.0.3]
+R6(config-router)#network 2.0.0.0 0.0.0.255 area 0 [сеть LAN C, 255.255.255.0 -> 0.0.0.255]
+
+Настроить аутентификацию md5:
+
+Аунтентификация настраивается попарно.
+
+Например, настроим аунтификацию для R4-R5
+ 
+R4:
+
+R4>en
+R4#conf t
+R4(config)#int f1/0 [интерфейс связывающий с R5 ]
+R4(config-if)#ip ospf authentication message-digest-key 10 md5 10 [должен совпадать с R5 f0/0]
+
+R5:
+
+R5>en
+R5#conf t
+R5(config)#int f0/0 [интерфейс связывающий с R4 ]
+R5(config-if)#ip ospf authentication message-digest-key 10 md5 10 [должен совпадать с R4 f1/0]
+R5(config-if)#do sh ip ospf int f0/0
