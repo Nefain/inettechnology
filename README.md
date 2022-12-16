@@ -22,4 +22,5 @@
 
 ## Экзаменационный билет №15
 Ответ на экзаменационный [билет 15](https://github.com/stankin/inet-2022/wiki/exam15)
+
 Ссылка на коммит добавление ответа на первый вопрос [commited](https://github.com/stankin/inet-2022/wiki/exam15/_compare/1391a392cbf277b56584cebc402e3066aa81fd52)
